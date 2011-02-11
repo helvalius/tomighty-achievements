@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pomodoroTracking>
+    <experience>10</experience>
+    <finishedPomodorosComplete>0</finishedPomodorosComplete>
+    <finishedPomodorosThisSession>0</finishedPomodorosThisSession>
+    <interruptComplete>8</interruptComplete>
+    <interruptsSession>8</interruptsSession>
+    <level>2</level>
+    <longBreaksComplete>0</longBreaksComplete>
+    <longBreaksSession>0</longBreaksSession>
+    <pomodorosRestartedComplete>0</pomodorosRestartedComplete>
+    <pomodorosRestartedSession>0</pomodorosRestartedSession>
+    <pomodorosStartedComplete>0</pomodorosStartedComplete>
+    <pomodorosStartedSession>0</pomodorosStartedSession>
+    <secondsComplete>18</secondsComplete>
+    <secondsSession>18</secondsSession>
+    <smallBreaksComplete>0</smallBreaksComplete>
+    <smallBreaksSession>0</smallBreaksSession>
+</pomodoroTracking>

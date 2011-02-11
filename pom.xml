@@ -1,0 +1,203 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.tomighty</groupId>
+	<artifactId>tomighty-hel</artifactId>
+	<packaging>jar</packaging>
+	<version>0.6.1</version>
+	<name>Tomighty</name>
+	<url>http://code.google.com/p/tomighty/</url>
+	
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<dependencies>
+
+	<dependency>
+		<groupId>hel</groupId>
+		<artifactId>jachievement</artifactId>
+		<version>1.0</version>
+	</dependency>	
+	
+	<dependency>
+		<groupId>hel</groupId>
+		<artifactId>timingframework</artifactId>
+		<version>1.0</version>
+	</dependency>	
+	
+	
+	
+	
+	</dependencies>
+	
+	<build>
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/images</directory>
+				<includes><include>**/*</include></includes>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>${basedir}/src/main/sounds</directory>
+				<includes><include>**/*</include></includes>
+			</resource>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/text</directory>
+				<includes><include>**/*</include></includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+                           <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+							<mainClass>org.tomighty.Tomighty</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			 <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        <overWriteReleases>false</overWriteReleases>
+                        <overWriteSnapshots>false</overWriteSnapshots>
+                        <overWriteIfNewer>true</overWriteIfNewer>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+		</plugins>
+	</build>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus-mojo</id>
+			<name>Codehaus Mojo</name>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<releases><enabled>false</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>akathist-repository</id>
+			<name>Akathist Repository</name>
+			<url>http://www.9stmaryrd.com/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<profiles>
+		<profile>
+			<id>Windows Platform</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<os>
+					<family>Windows</family>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<repositories>
+				<repository>
+					<id>codehaus-mojo</id>
+					<name>Codehaus Mojo</name>
+					<url>http://snapshots.repository.codehaus.org</url>
+					<releases><enabled>false</enabled></releases>
+					<snapshots><enabled>true</enabled></snapshots>
+				</repository>
+				<repository>
+					<id>akathist-repository</id>
+					<name>Akathist Repository</name>
+					<url>http://www.9stmaryrd.com/maven</url>
+				</repository>
+			</repositories>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>nsis-maven-plugin</artifactId>
+							<version>1.0-20091114.095635-2</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+				<plugins>
+					<plugin>
+						<groupId>com.akathist.maven.plugins.launch4j</groupId>
+						<artifactId>launch4j-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>l4j-gui</id>
+								<phase>package</phase>
+								<goals>
+									<goal>launch4j</goal>
+								</goals>
+								<configuration>
+									<headerType>gui</headerType>
+									<outfile>target/${artifactId}-${project.version}.exe</outfile>
+									<jar>target/${artifactId}-${project.version}.jar</jar>
+									<icon>img/tomato.ico</icon>
+									<errTitle>Tomighty</errTitle>
+									<jre>
+										<minVersion>1.5.0</minVersion>
+									</jre>
+									<versionInfo>
+										<fileVersion>${project.version}.0.0</fileVersion>
+										<txtFileVersion>${project.version}.0.0</txtFileVersion>
+										<fileDescription>Desktop timer for the Pomodoro Technique users</fileDescription>
+										<copyright>Copyright 2010 Celio Cidral Junior</copyright>
+										<productVersion>${project.version}.0.0</productVersion>
+										<txtProductVersion>${project.version}.0.0</txtProductVersion>
+										<productName>${project.name}</productName>
+										<internalName>${artifactId}</internalName>
+										<originalFilename>${artifactId}-${project.version}.exe</originalFilename>
+									</versionInfo>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>nsis-maven-plugin</artifactId>
+						<version>1.0-20091114.095635-2</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>generate-project</goal> <!-- create target/project.nsh -->
+									<goal>compile</goal>          <!-- compile setup.nsi into exe -->
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

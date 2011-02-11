@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/images"/>
+	<classpathentry kind="src" path="src/main/sounds"/>
+	<classpathentry kind="src" path="src/main/text"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/JAchievement-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/timingframework-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
