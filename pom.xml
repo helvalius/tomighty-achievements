@@ -22,11 +22,11 @@
 		<version>1.0</version>
 	</dependency>	
 	
-	<dependency>
-		<groupId>hel</groupId>
-		<artifactId>timingframework</artifactId>
-		<version>1.0</version>
-	</dependency>	
+<dependency>
+    <groupId>net.java.dev.timingframework</groupId>
+    <artifactId>timingframework</artifactId>
+    <version>1.0</version>
+</dependency>
 	
 	
 	
